@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Requerant list</title>
+</head>
+<body>
+
+<h1>La liste des requérants <span th:text="${requerantLength}"></span></h1>
+<hr>
+<ul th:each="requerant : ${requerantList}">
+    <li th:text="${requerant.nom}">1. machin</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'demandes')}">
+
+<body>
+
+<h2>Demandes</h2>
+
+<table id="demandes" class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 150px;">Id</th>
+        <th style="width: 200px;">Reference</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="demande : ${demandes}">
+        <td>
+
+        </td>
+        <td th:text="${demande.id}"/>
+        <td th:text="${demande.reference}"/>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
