@@ -1,4 +1,4 @@
-package snps.lims.demande;
+package snps.limssite.demande;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

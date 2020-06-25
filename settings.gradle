@@ -1,4 +1,3 @@
 rootProject.name = 'lims'
-include 'lims-client'
-include 'lims-site'
+include 'lims-client', 'lims-site'
 

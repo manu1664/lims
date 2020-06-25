@@ -1,4 +1,4 @@
-package snps.lims.system;
+package snps.limssite.system;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

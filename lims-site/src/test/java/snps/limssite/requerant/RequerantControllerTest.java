@@ -1,4 +1,4 @@
-package snps.lims.requerant;
+package snps.limssite.requerant;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

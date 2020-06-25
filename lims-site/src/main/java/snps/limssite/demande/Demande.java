@@ -1,7 +1,7 @@
-package snps.lims.demande;
+package snps.limssite.demande;
 
 import lombok.Data;
-import snps.lims.requerant.Requerant;
+import snps.limssite.requerant.Requerant;
 
 import javax.persistence.*;
 import java.sql.Date;

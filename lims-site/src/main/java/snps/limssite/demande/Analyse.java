@@ -1,7 +1,7 @@
-package snps.lims.demande;
+package snps.limssite.demande;
 
 import lombok.Data;
-import snps.lims.laboratoire.Section;
+import snps.limssite.laboratoire.Section;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

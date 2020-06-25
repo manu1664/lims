@@ -5,18 +5,18 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './src/client/scss/index.scss'
+        index: './src/scss/index.scss'
     },
     output: {
 
-        path: path.resolve(__dirname,'src', 'main'),
-        filename: 'resources/static/resources/js/[name].js'
+        path: path.resolve(__dirname,'build', 'dist'),
+        filename: 'js/[name].js'
     },
     plugins: [
         new CleanWebpackPlugin(),
         new CopyPlugin({
             patterns: [
-                {from: './src/client/images', to: './resources/static/resources/img'}
+                {from: './src/images', to: 'img'}
             ]
         }),
         new webpack.ProvidePlugin({

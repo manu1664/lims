@@ -1,4 +1,4 @@
-package snps.lims.requerant;
+package snps.limssite.requerant;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

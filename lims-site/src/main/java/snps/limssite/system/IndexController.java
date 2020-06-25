@@ -1,4 +1,4 @@
-package snps.lims.system;
+package snps.limssite.system;
 
 
 import org.springframework.stereotype.Controller;

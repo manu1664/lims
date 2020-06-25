@@ -1,20 +1,21 @@
-package snps.lims.laboratoire;
+package snps.limssite.requerant;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+
 @Data
-public class Section {
+@Entity
+public class Service {
 
     @Id
     private int id;
-    private String code;
     private String libelle;
-    private String description;
-    private boolean actif;
+    private String adresse;
+    private String codePostal;
+    private String ville;
 
 
 }

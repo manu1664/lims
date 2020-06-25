@@ -1,4 +1,4 @@
-package snps.lims.demande;
+package snps.limssite.demande;
 
 import lombok.Data;
 

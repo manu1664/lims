@@ -1,4 +1,4 @@
-package snps.lims.demande;
+package snps.limssite.demande;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,11 @@ public class DemandeController {
     public String showAll(Model model) {
         model.addAttribute("demandes", this.demandes.findAll());
         return "demande/list";
+    }
+
+    @GetMapping("/demande/search")
+    public String initSearch() {
+        return "demande/search";
     }
 
 }

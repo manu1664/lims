@@ -4,32 +4,35 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'org.springframework.boot'
+
 group = 'snps'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // compile project(':lims-client')
+
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'org.hsqldb:hsqldb'
-    runtimeOnly 'org.hsqldb:hsqldb'
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    runtime 'org.hsqldb:hsqldb'
+    
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 }
 
