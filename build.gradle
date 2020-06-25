@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'com.github.node-gradle.node' version '2.2.3'
 	id 'java'
 }
 
@@ -29,9 +30,18 @@ dependencies {
 	}
 	testImplementation 'org.hsqldb:hsqldb'
 	runtimeOnly 'org.hsqldb:hsqldb'
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 }
 
 test {
 	useJUnitPlatform()
 }
+
+node {
+	version = '13.12.0'
+	npmVersion = '6.14.4'
+	download = true
+}
+
+npm_run_build.dependsOn(npmInstall)

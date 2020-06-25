@@ -3,6 +3,7 @@ package snps.lims.demande;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -14,4 +15,6 @@ public interface DemandeRepository extends CrudRepository<Demande, Integer> {
      * @return a list of {@link Demande}s
      */
     List<Demande> findByReference(String reference);
+
+    Collection<Demande> findDemandeByReferenceContains(String reference);
 }
