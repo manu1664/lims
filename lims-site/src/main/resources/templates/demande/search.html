@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="~{fragments/layout :: layout (~{::body},'demandes')} ">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      th:replace="~{fragments/layout :: layout (~{::body},'demandes')} ">
 
+<body class="text-white bg-dark">
+<div class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-2">
+            <div class="card bg-dark text-light">
+                <div class="card-header">
+                    Recherche
+                </div>
+                <div class="card-body ">
+                    <form th:action="@{/demandes}" th:object="${demande}" method="get">
+                        <div th:with="valid = ${!#fields.hasErrors('reference')}"
+                             th:class="${'input-group mb-3'}">
+                            <input th:field="*{reference}"
+                                   type="text"
+                                   th:class="${'form-control form-control-sm' + (valid ? '' : ' is-invalid')}"
+                                   placeholder="Référence LIMS"
+                                   aria-label="Recipient's username"
+                                   aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-sm" type="submit" id="button-addon2">Button</button>
+                            </div>
+                            <div th:if="${#fields.hasAnyErrors()}" class="invalid-feedback">
+                                <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <table class="table table-dark table-sm">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        <div class="form-check">
+                            <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                        </div>
+                    </th>
+                    <th scope="col">Référence</th>
+                    <th scope="col">NC</th>
+                    <th scope="col">Affaire(s)</th>
+                    <th scope="col">Infraction(s)</th>
+                    <th scope="col">Date d'édition</th>
+                    <th scope="col">Requérant</th>
+                    <th scope="col">Service</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="demande : ${demandes}">
+                    <th scope="row">
+                        <div class="form-check">
+                            <input class="form-check-input position-static" type="checkbox" value="option1" aria-label="...">
+                        </div>
+                    </th>
+                    <td>
+                        <a th:href="@{/demande/__${demande.id}__}" th:text="${demande.reference}">LPS59-2020-12368</a>
+                    </td>
+                    <td>
+                        <span th:if="!${#sets.isEmpty(demande.nonConformites)}"
+                              class="fas fa-exclamation-circle text-warning">
+                        </span>
+                    </td>
+                    <td>
+                        <span th:each="affaire : ${demande.affaires}"
+                              th:text="${affaire.numeroPv}" class="badge badge-light">2020/1285874</span>
+                    </td>
+                    <td>
+                        <span th:each="infraction : ${demande.infractions}"
+                              th:text="${infraction.article}" class="badge badge-secondary">Secondary</span>
+                    </td>
+                    <td th:text="${demande.editionDate}">2020/02/20</td>
+                    <td th:text="${demande.requerant.prenom} + ' ' + ${demande.requerant.nom}">Jean Michmich</td>
+                    <td th:text="${demande.requerant.service.libelle}">SP DE LENS</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

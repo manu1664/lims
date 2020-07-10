@@ -1,7 +1,13 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
-$bodyColor: #990;
+$backgroundCurrentColor: currentColor;
 
-body {
-  color: $bodyColor;
+
+.backgroundCurrentColor  {
+  background-color: $backgroundCurrentColor;
+}
+
+// Breadcrumb
+.breadcrumb {
+  margin-top: 10px;
 }

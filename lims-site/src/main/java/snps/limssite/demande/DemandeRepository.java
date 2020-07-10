@@ -1,5 +1,7 @@
 package snps.limssite.demande;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

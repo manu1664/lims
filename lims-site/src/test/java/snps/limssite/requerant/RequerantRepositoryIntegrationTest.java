@@ -58,7 +58,7 @@ public class RequerantRepositoryIntegrationTest {
     @Test
     public void whenFindByNom_thenReturnRequerantList() {
         List<Requerant> found = this.requerants.findByNom(NOM);
-        assertThat(found).contains(this.requerant);
+        assertThat(found.get(0).getId()).isEqualTo(this.requerant.getId());
     }
 
     @Test

@@ -2,7 +2,6 @@ package snps.limssite.demande;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import snps.limssite.laboratoire.Section;
 import snps.limssite.model.LibelleEntity;
 
 import javax.persistence.Entity;
@@ -12,13 +11,12 @@ import javax.persistence.ManyToOne;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Analyse extends LibelleEntity {
+public class Infraction extends LibelleEntity {
 
-    private String description;
-    private Double prix;
+    private String article;
 
     @ManyToOne
-    @JoinColumn(name = "section_id")
-    private Section section;
+    @JoinColumn(name = "infraction_type_id")
+    private InfractionType infractionType;
 
 }

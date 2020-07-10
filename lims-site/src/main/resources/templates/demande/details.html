@@ -1,0 +1,165 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      th:replace="~{fragments/layout :: layout (~{::body},'demandes')} ">
+
+<body class="text-white bg-dark">
+<div class="container-fluid">
+
+    <!-- Breadcrumb -->
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-dark text-light">
+                    <li class="breadcrumb-item"><a th:href="@{/demandes?reference=}">Recherche</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"
+                        th:text="'Demande ' + ${demande.reference}">Demande
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- end Breadcrumb -->
+
+    <div class="row">
+        <div class="col-4">
+            <!-- Card demande -->
+            <div class="card bg-dark text-light">
+                <div class="card-header">
+                        <span th:each="affaire : ${demande.affaires}"
+                              th:text="${affaire.numeroPv}"
+                              class="badge badge-light">
+                                2020/1285
+                        </span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="'Demande ' + ${demande.reference}">LPSDD-YYYY-XXXXX</h5>
+                    <p class="card-text" th:each="infraction : ${demande.infractions}">
+                        <span th:text="'Editée le ' + ${#dates.format(demande.editionDate, 'dd MMM yyyy')}"></span><br/>
+                        <span th:text="'Réceptionnée le ' + ${#dates.format(demande.receptionDate, 'dd MMM yyyy')}"></span><br/>
+                        <strong>Infraction(s) : </strong>
+                        <small th:text="${infraction.article} + ' : ' + ${infraction.libelle} + ' (' + ${infraction.infractionType.name + ')'}">
+                            Secondary
+                        </small>
+                    </p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <span class="far fa-edit"></span> Edit
+                    </a>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <span class="far fa-eye"></span> Visualiser saisine
+                    </a>
+                </div>
+            </div>
+            <!-- end Card demande -->
+            <br/>
+            <!-- Card Requerant -->
+            <div class="card bg-dark text-light">
+                <h5 class="card-header">Requérant</h5>
+                <div class="card-body">
+                    <p class="card-text">
+                        <span th:text="${demande.requerant.prenom} + ' ' + ${demande.requerant.nom}"></span><br/>
+                        <span th:text="${demande.requerant.service.libelle}"></span><br/>
+                        <span th:text="${demande.requerant.service.adresse}"></span><br/>
+                        <span th:text="${demande.requerant.service.codePostal} + ' '"></span>
+                        <span th:text="${demande.requerant.service.ville}"></span>
+                    </p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <span class="far fa-paper-plane"></span> Send e-mail
+                    </a>
+                </div>
+            </div>
+            <!-- end Card requerant -->
+        </div>
+
+        <!-- Analyses demandées -->
+        <div class="col-8">
+            <!-- Navs -->
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <span class="fas fa-print"> </span> Imprimer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="fas fa-barcode"> </span> Code Barre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <!--End Navs  -->
+
+
+            <!-- Non Conformités -->
+            <div th:if="${!#sets.isEmpty(demande.nonConformites)}">
+                <div th:each="nonConformite : ${demande.nonConformites}" class="accordion text-light"
+                     th:id="accordionNonConformites">
+                    <div class="card bg-dark">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-warning" type="button"
+                                        data-toggle="collapse" th:data-target="'#collapse' + ${nonConformite.id}" aria-expanded="true"
+                                        th:aria-controls="'collapse' + ${nonConformite.id}">
+                                    <span class="fas fa-exclamation-circle"> </span>
+                                    <span th:text="${nonConformite.motif}">Collapsible Group Item #1</span>
+                                    <a href="#" class="btn btn-outline-warning btn-sm">
+                                        <span class="far fa-thumbs-up"></span> Fermer la non-conformité
+                                    </a>
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div th:id="'collapse' + ${nonConformite.id}" class="collapse show" aria-labelledby="headingOne"
+                             data-parent="#accordionNonConformites">
+                            <div th:each="note : ${nonConformite.nonConformiteNotes}" class="card-body">
+                                <div th:text="${note.message}"></div>
+                                <small th:text="'Note rédigée le ' + ${note.editionDate}"></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            </div>
+            <!-- End Non Conformités -->
+
+            <h3 class="text-light">Analyses demandées</h3>
+
+            <table class="table table-striped text-light" th:object="${demande}">
+                <thead>
+                <tr>
+                    <th scope="col">Analyse</th>
+                    <th scope="col">Statut</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Scellés</th>
+                    <th scope="col">
+                        <span class="fas fa-cogs"></span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${demande.itemDemandes}">
+                    <td th:text="${item.analyse.libelle}"></td>
+                    <td th:text="${item.status}"></td>
+                    <td th:text="${item.analyse.section.code} + ' - ' + ${item.analyse.section.libelle}">30 - Biogolie
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-info btn-sm">
+                            Visualiser
+                            <span class="badge badge-light">4</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-light btn-sm">
+                            <span class="fas fa-vial text-info"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

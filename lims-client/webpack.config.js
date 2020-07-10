@@ -5,11 +5,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './src/scss/index.scss'
+        index: './src/js/index.js'
     },
     output: {
-
-        path: path.resolve(__dirname,'build', 'dist'),
+        path: path.resolve(__dirname, 'build', 'dist'),
         filename: 'js/[name].js'
     },
     plugins: [
@@ -47,6 +46,10 @@ module.exports = {
                 }, {
                     loader: 'sass-loader' // compiles Sass to CSS
                 }]
+            },
+            {
+                test: /\.(svg|eot|woff|woff2|ttf)$/,
+                use: ['file-loader']
             }
         ]
     }

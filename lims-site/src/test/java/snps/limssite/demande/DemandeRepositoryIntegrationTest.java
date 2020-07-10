@@ -40,7 +40,7 @@ public class DemandeRepositoryIntegrationTest {
     @Test
     public void whenFindByReference_thenReturnReferenceList() {
         List<Demande> found = this.demandes.findByReference(REFERENCE);
-        assertThat(found).contains(this.demande);
+        assertThat(found.get(0).getReference()).isEqualTo(this.demande.getReference());
     }
 
 }

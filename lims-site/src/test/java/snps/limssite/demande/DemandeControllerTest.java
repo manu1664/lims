@@ -1,6 +1,5 @@
 package snps.limssite.demande;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,11 @@ import snps.limssite.requerant.Service;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -78,17 +79,29 @@ public class DemandeControllerTest {
     }
 
     @Test
-    @Ignore
     public void processFindDemande() throws Exception {
         given(this.demandeRepository.findDemandeByReferenceContains(anyString())).willReturn(Collections.singletonList(this.demande));
 
         this.mvc
                 .perform(
-                        get("/demande", "reference=" + anyString())
+                        get("/demandes", "reference=" + anyString())
                 )
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("demandes"))
                 .andExpect(view().name("demande/search"));
+    }
+
+    @Test
+    public void showDetails() throws Exception {
+        given(this.demandeRepository.findById(anyInt())).willReturn(Optional.of(this.demande));
+
+        this.mvc
+                .perform(
+                        get("/demande/{id}", 0)
+                )
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("demande"))
+                .andExpect(view().name("demande/details"));
     }
 
 }

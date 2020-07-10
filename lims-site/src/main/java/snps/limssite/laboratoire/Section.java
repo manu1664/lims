@@ -1,18 +1,17 @@
 package snps.limssite.laboratoire;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import snps.limssite.model.LibelleEntity;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Section {
+public class Section extends LibelleEntity {
 
-    @Id
-    private int id;
     private String code;
-    private String libelle;
     private String description;
     private boolean actif;
 
