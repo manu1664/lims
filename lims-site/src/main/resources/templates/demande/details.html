@@ -71,54 +71,56 @@
 
         <!-- Analyses demandées -->
         <div class="col-8">
-            <!-- Navs -->
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <span class="fas fa-print"> </span> Imprimer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="fas fa-barcode"> </span> Code Barre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-            <!--End Navs  -->
-
 
             <!-- Non Conformités -->
             <div th:if="${!#sets.isEmpty(demande.nonConformites)}">
-                <div th:each="nonConformite : ${demande.nonConformites}" class="accordion text-light"
+                <div class="accordion text-light"
                      th:id="accordionNonConformites">
-                    <div class="card bg-dark">
+                    <div th:each="nonConformite, iterStat : ${demande.nonConformites}" class="card bg-dark">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left text-warning" type="button"
-                                        data-toggle="collapse" th:data-target="'#collapse' + ${nonConformite.id}" aria-expanded="true"
-                                        th:aria-controls="'collapse' + ${nonConformite.id}">
+                                <button th:class="!${iterStat.first}? 'btn btn-link btn-block text-left text-warning collapsed' : 'btn btn-link btn-block text-left text-warning'"
+                                        th:data-target="'#collapse' + ${nonConformite.id}"
+                                        th:aria-controls="'collapse' + ${nonConformite.id}"
+                                        aria-expanded="false"
+                                        type="button"
+                                        data-toggle="collapse">
                                     <span class="fas fa-exclamation-circle"> </span>
                                     <span th:text="${nonConformite.motif}">Collapsible Group Item #1</span>
-                                    <a href="#" class="btn btn-outline-warning btn-sm">
-                                        <span class="far fa-thumbs-up"></span> Fermer la non-conformité
-                                    </a>
                                 </button>
                             </h2>
                         </div>
 
-                        <div th:id="'collapse' + ${nonConformite.id}" class="collapse show" aria-labelledby="headingOne"
+                        <div th:id="'collapse' + ${nonConformite.id}" th:class="${iterStat.first} ? 'collapse show' : 'collapse'"
+                             aria-labelledby="headingOne"
                              data-parent="#accordionNonConformites">
-                            <div th:each="note : ${nonConformite.nonConformiteNotes}" class="card-body">
-                                <div th:text="${note.message}"></div>
-                                <small th:text="'Note rédigée le ' + ${note.editionDate}"></small>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <div th:each="note : ${nonConformite.nonConformiteNotes}" class="list-group-item bg-dark">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <p class="mb-1" th:text="${note.message}">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                            <small th:text="${#dates.format(note.editionDate, 'dd MMM yyyy HH:mm')}"></small>
+                                        </div>
+                                        <small class="text-muted">rédigé par Emmanuel Lemettre</small>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- Navs NonConformité-->
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">
+                                        <span class="fas fa-plus"> </span> Ajouter une note</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <span class="fas fa-door-closed"> </span> Fermer non-conformité</a>
+                                </li>
+                            </ul>
+                            <!-- End Navs NonConformité -->
                         </div>
                     </div>
                 </div>
+
                 <br/>
             </div>
             <!-- End Non Conformités -->
