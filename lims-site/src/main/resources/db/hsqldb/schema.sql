@@ -8,9 +8,16 @@ DROP TABLE demande_infraction IF EXISTS;
 DROP TABLE affaire IF EXISTS;
 DROP TABLE demande IF EXISTS;
 DROP TABLE infraction IF EXISTS;
-DROP TABLE infraction_type if exists;
+DROP TABLE infraction_type IF exists;
 DROP TABLE requerant IF EXISTS;
 DROP TABLE service IF EXISTS;
+DROP TABLE service_history IF EXISTS;
+
+
+CREATE TABLE service_history
+(
+    id INTEGER IDENTITY PRIMARY KEY
+);
 
 CREATE TABLE service
 (
@@ -18,9 +25,16 @@ CREATE TABLE service
     libelle     VARCHAR(64)  NOT NULL,
     adresse     VARCHAR(255) NOT NULL,
     code_postal VARCHAR(32)  NOT NULL,
-    ville       VARCHAR(128) NOT NULL
+    ville       VARCHAR(128) NOT NULL,
+    status      VARCHAR(16) NOT NULL,
+    version     VARCHAR(32) NOT NULL,
+    service_history_id  INTEGER NOT NULL
 );
 CREATE INDEX service_libelle ON service (libelle);
+ALTER TABLE service
+    ADD CONSTRAINT fk_service_service_history FOREIGN KEY (service_history_id) REFERENCES service_history (id);
+
+
 
 CREATE TABLE requerant
 (

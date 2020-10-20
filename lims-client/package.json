@@ -1,11 +1,15 @@
 {
   "name": "lims",
   "version": "1.0.0",
+  "description": "Client application of lism new generation 2 for the good future !",
+  "license": "UNLICENSED",
+  "repository": "npm/npm",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
     "autoprefixer": "^9.8.4",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
+    "jquery-ui": "^1.12.1",
     "popper.js": "^1.16.1",
     "precss": "^4.0.0"
   },

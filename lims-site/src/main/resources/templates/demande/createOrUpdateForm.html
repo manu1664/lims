@@ -1,0 +1,34 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      th:replace="~{fragments/layout :: layout (~{::body},'createDemande')} ">
+<body>
+    <div class="container">
+        <h3 class="text-light">Nouvelle demande d'analyses</h3>
+        <hr class="border-light" />
+        <form method="post" th:action="@{/demande/create}" th:object="${demande}">
+            <input
+                    th:replace="~{fragments/inputField :: input ('Référence', 'reference', 'text') }" />
+            <input
+                    th:replace="~{fragments/inputField :: input ('Date d édition', 'editionDate', 'date') }" />
+            <input
+                    th:replace="~{fragments/inputField :: input ('Date de réception', 'receptionDate', 'date') }" />
+
+            <div class="date-picker">
+                <div class="input-group mb-3 input">
+                    <input type="date" class="result form-control" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button"><span class="fa fa-calendar"></span> Select Date</button>
+                    </div>
+                </div>
+                <div class="calendar"></div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-outline-primary"><span class="far fa-save"> </span> Enregistrer</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+
+</html>

@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.sql.Date;
 import java.util.Collection;
 
 @Controller
@@ -51,6 +52,14 @@ public class DemandeController {
                 demande -> model.addAttribute("demande", demande)
         );
         return "demande/details";
+    }
+
+    @GetMapping("/demande/create")
+    public String initDemandeForm(Model model) {
+        Demande demande = new Demande();
+        demande.setReceptionDate(new Date(System.currentTimeMillis()));
+        model.addAttribute("demande", demande);
+        return "demande/createOrUpdateForm";
     }
 
 }

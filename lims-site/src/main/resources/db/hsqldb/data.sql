@@ -1,12 +1,20 @@
 
-INSERT INTO SERVICE VALUES (1, 'PS LILLE', '123 rue des postes', '59000', 'LILLE');
-INSERT INTO SERVICE VALUES (2, 'PS MARSEILLE', '32 av des Catanes', '13001', 'MARSEILLE');
-INSERT INTO SERVICE VALUES (3, 'DADR LENS', '69, rue Massena', '62000', 'LENS');
-INSERT INTO SERVICE VALUES (4, 'TGI DOUAI', '12 boulevard du Barlet', '59100', 'DOUAI');
-INSERT INTO SERVICE VALUES (5, 'Commissariat de Wattignies', '85, rue de la Marne', '59139', 'WATTIGNIES');
-INSERT INTO SERVICE VALUES (6, 'PS LYON', '1, place Part-Dieu', '69001', 'LYON');
-INSERT INTO SERVICE VALUES (7, 'PS Toulouse', '44, quai de l espelette', '31000', 'TOULOUSE');
+INSERT INTO SERVICE_HISTORY VALUES (1);
+INSERT INTO SERVICE_HISTORY VALUES (2);
+INSERT INTO SERVICE_HISTORY VALUES (3);
+INSERT INTO SERVICE_HISTORY VALUES (4);
+INSERT INTO SERVICE_HISTORY VALUES (5);
+INSERT INTO SERVICE_HISTORY VALUES (6);
+INSERT INTO SERVICE_HISTORY VALUES (7);
 
+INSERT INTO SERVICE VALUES (1, 'PS LILLE', '123 rue des postes', '59000', 'LILLE', 'ENABLE', '1.0', 1);
+INSERT INTO SERVICE VALUES (2, 'PS MARSEILLE', '32 av des Catanes', '13001', 'MARSEILLE', 'ENABLE', '1.0', 2);
+INSERT INTO SERVICE VALUES (3, 'DADR LENS', '69, rue Massena', '62000', 'LENS', 'DISABLE', '1.0', 3);
+INSERT INTO SERVICE VALUES (4, 'TGI DOUAI', '12 boulevard du Barlet', '59100', 'DOUAI', 'ENABLE', '1.0', 4);
+INSERT INTO SERVICE VALUES (5, 'Commissariat de Wattignies', '85, rue de la Marne', '59139', 'WATTIGNIES', 'ENABLE', '1.0', 5);
+INSERT INTO SERVICE VALUES (6, 'PS LYON', '1, place Part-Dieu', '69001', 'LYON', 'ENABLE', '1.0', 6);
+INSERT INTO SERVICE VALUES (7, 'PS Toulouse', '44, quai de l espelette', '31000', 'TOULOUSE', 'ENABLE', '1.0', 7);
+INSERT INTO SERVICE VALUES (8, 'BADR LENS', '69, rue Massena', '62000', 'LENS', 'ENABLE', '1.1', 3);
 
 INSERT INTO REQUERANT VALUES (1,'Lieutenant', 'Jean-Pierre','De Smedt', 'jean-pierre.desmedt@mail.com', 1);
 INSERT INTO REQUERANT VALUES (2,'Brigadier', 'Chantal','Vanhaert', 'chantal.vanhaert@mail.com', 2);
@@ -81,7 +89,3 @@ INSERT INTO NON_CONFORMITE_NOTE VALUES (1, '2020-02-16 13:05:21', 'les scelles s
 INSERT INTO NON_CONFORMITE VALUES (2, 'Erreur dans le nom du mise en cause', 'CREATED', '2020-02-18 10:44:23', null, 1);
 INSERT INTO NON_CONFORMITE_NOTE VALUES (2, '2020-02-19 18:23:56', 'Le requérant a appelé pour confirmer l''erreur et rappelera', 2);
 INSERT INTO NON_CONFORMITE_NOTE VALUES (3, '2020-02-20 13:45:56', 'Les données du MEC sont envoyées via la poste suite à l''appel du requérant', 2);
-
-
-
-

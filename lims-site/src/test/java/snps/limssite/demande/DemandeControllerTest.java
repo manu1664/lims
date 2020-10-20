@@ -104,4 +104,15 @@ public class DemandeControllerTest {
                 .andExpect(view().name("demande/details"));
     }
 
+    @Test
+    public void initDemandeSave() throws Exception {
+        this.mvc
+                .perform(
+                        get("/demande/create")
+                )
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("demande"))
+                .andExpect(view().name("demande/createOrUpdateForm"));
+    }
+
 }

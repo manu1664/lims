@@ -56,10 +56,13 @@
                 <div class="card-body">
                     <p class="card-text">
                         <span th:text="${demande.requerant.prenom} + ' ' + ${demande.requerant.nom}"></span><br/>
-                        <span th:text="${demande.requerant.service.libelle}"></span><br/>
+                        <span th:text="${demande.requerant.service.libelle}"> </span>
+                        <span th:class="${(demande.requerant.service.status == 'ENABLE') ? 'far fa-check-circle text-success' : 'far fa-times-circle text-danger'}" > </span>
+                        <span class=""></span><br/>
                         <span th:text="${demande.requerant.service.adresse}"></span><br/>
                         <span th:text="${demande.requerant.service.codePostal} + ' '"></span>
                         <span th:text="${demande.requerant.service.ville}"></span>
+
                     </p>
                     <a href="#" class="btn btn-outline-primary btn-sm">
                         <span class="far fa-paper-plane"></span> Send e-mail
